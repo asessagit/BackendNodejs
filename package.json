@@ -55,7 +55,7 @@
     "mkdirp": "^3.0.1",
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.3",
-    "multer": "^1.4.5-lts.1",
+    "multer": "^2.0.0",
     "newman": "^6.2.0",
     "postman-runtime": "^7.43.1",
     "postman-to-openapi": "^1.2.0",
