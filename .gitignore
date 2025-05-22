@@ -1,0 +1,42 @@
+# Dependências do Node.js
+node_modules/
+package-lock.json
+
+# Arquivos sensíveis e configurações locais
+.env
+api_Key_Gemini.txt
+
+# Logs, backups e arquivos temporários
+*.log
+backup/
+dump/
+move_other_log.txt
+rename_log.txt
+rename_folder_log.txt
+
+# Scripts e arquivos de automação
+*.ps1
+
+# Documentação e referências
+*.md
+
+# Diretórios de código e testes
+scripts/
+tests/
+.vscode/
+
+# Servidores e configurações específicas
+server_1.js
+server_2.js
+mongodb1.js
+
+# Estruturas e conceitos adicionais
+Conceitos/
+estrutura_de_pastas.txt
+outros/
+
+# Modelos de diagramas
+*.puml
+
+# Ignorar arquivos dentro de produtos/
+produtos/*.ps1

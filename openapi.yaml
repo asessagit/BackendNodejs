@@ -1,0 +1,813 @@
+{
+	"info": {
+		"_postman_id": "e1ee0316-dcc3-48f6-8a0a-632fec4a7b6e",
+		"name": "ApiTestBasic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40184098"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": []
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Listar produtos",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(\"Pre-Request Script executado com sucesso!\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Testa se o status é 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Obtém o JSON da resposta\r",
+									"let responseJson = pm.response.json();\r",
+									"\r",
+									"// Loga cada objeto em uma linha separada, com espaçamento entre os itens\r",
+									"console.log(\"Lista de Produtos:\");\r",
+									"responseJson.forEach((produto, index) => {\r",
+									"    console.log(JSON.stringify(produto, null, 2));\r",
+									"    console.log(\"\\n\"); // Adiciona uma linha em branco entre os objetos\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar produtos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "802"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"322-PymfGm5iVEb0B3+T4k2lpdLg+Bc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2024 19:48:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"67504642fcf6ab10f0675cbd\",\n        \"nome\": \"nome 4\",\n        \"descricao\": \"Descrição 4\",\n        \"preco\": 402,\n        \"imgUrl\": \"/uploads/img 4.jpg\",\n        \"alt\": \"Texto 4\",\n        \"categoria\": \"categoria 4\",\n        \"marca\": \"marca 4\",\n        \"createdAt\": \"2024-12-04T12:08:34.312Z\",\n        \"updatedAt\": \"2024-12-04T12:08:34.312Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"675064f416c93f3c14ea4d44\",\n        \"nome\": \"nome 5\",\n        \"descricao\": \"Descrição 5\",\n        \"preco\": 502,\n        \"imgUrl\": \"/uploads/img 5.jpg\",\n        \"alt\": \"Texto 5\",\n        \"categoria\": \"categoria 5\",\n        \"marca\": \"marca 5\",\n        \"createdAt\": \"2024-12-04T14:19:32.510Z\",\n        \"updatedAt\": \"2024-12-10T19:09:13.304Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"675892a3bfc55cfeca35a78e\",\n        \"nome\": \"nome 6\",\n        \"descricao\": \"Descrição 6\",\n        \"preco\": 602,\n        \"imgUrl\": \"/uploads/img 6.jpg\",\n        \"alt\": \"Texto 6\",\n        \"categoria\": \"categoria 6\",\n        \"marca\": \"marca 6\",\n        \"createdAt\": \"2024-12-10T19:12:37.034Z\",\n        \"updatedAt\": \"2024-12-10T19:12:37.034Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Adicionar produto",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"nome\", \"nome 7\");\r",
+									"pm.environment.set(\"descricao\", \"Descrição 7\");\r",
+									"pm.environment.set(\"preco\", \"702.00\");\r",
+									"pm.environment.set(\"imgUrl\", \"/uploads/img 7.jpg\");\r",
+									"pm.environment.set(\"alt\", \"Texto 7\");\r",
+									"pm.environment.set(\"categoria\", \"categoria 7\");\r",
+									"pm.environment.set(\"marca\", \"marca 7\");\r",
+									"\r",
+									"// Loga as variáveis configuradas para o POST\r",
+									"console.log(\"Variáveis configuradas para o POST:\");\r",
+									"console.log(JSON.stringify({\r",
+									"    nome: pm.environment.get(\"nome\"),\r",
+									"    descricao: pm.environment.get(\"descricao\"),\r",
+									"    preco: pm.environment.get(\"preco\"),\r",
+									"    imgUrl: pm.environment.get(\"imgUrl\"),\r",
+									"    alt: pm.environment.get(\"alt\"),\r",
+									"    categoria: pm.environment.get(\"categoria\"),\r",
+									"    marca: pm.environment.get(\"marca\")\r",
+									"}, null, 2));\r",
+									"\r",
+									"// // Testa o status da requisição\r",
+									"// pm.test(\"Successful POST request\", function () {\r",
+									"//     pm.response.to.have.status(201);\r",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verifica se a resposta tem status 201 (Criado)",
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"// Captura o JSON da resposta",
+									"let responseJson;",
+									"try {",
+									"    responseJson = pm.response.json();",
+									"    console.log(\"Resposta recebida:\", JSON.stringify(responseJson, null, 2));",
+									"} catch (e) {",
+									"    console.error(\"Erro ao processar o JSON da resposta:\", e.message);",
+									"    responseJson = null; // Garante que responseJson não é usado se inválido",
+									"}",
+									"",
+									"// Valida se o objeto contém o campo '_id'",
+									"pm.test(\"Response contains '_id'\", function () {",
+									"    pm.expect(responseJson).to.have.property(\"_id\");",
+									"});",
+									"",
+									"// Atualiza o ambiente apenas se os campos estiverem presentes",
+									"if (responseJson && responseJson._id && responseJson.createdAt && responseJson.updatedAt) {",
+									"    pm.environment.set(\"product_id\", responseJson._id);",
+									"    pm.environment.set(\"createdAt\", responseJson.createdAt);",
+									"    pm.environment.set(\"updatedAt\", responseJson.updatedAt);",
+									"    ",
+									"    console.log(\"Variáveis atualizadas no ambiente:\", {",
+									"        product_id: pm.environment.get(\"product_id\"),",
+									"        createdAt: pm.environment.get(\"createdAt\"),",
+									"        updatedAt: pm.environment.get(\"updatedAt\")",
+									"    });",
+									"} else {",
+									"    console.warn(\"Campos obrigatórios ausentes na resposta. Verifique o servidor.\");",
+									"}",
+									"",
+									"// Verifica se o response body possui as propriedades esperadas",
+									"pm.test(\"Response body structure is valid\", function () {",
+									"    pm.expect(responseJson).to.include.keys(",
+									"        \"nome\", \"descricao\", \"preco\", \"imgUrl\", \"alt\", ",
+									"        \"categoria\", \"marca\", \"_id\", \"createdAt\", \"updatedAt\", \"__v\"",
+									"    );",
+									"});",
+									"",
+									"",
+									"// // Verifica se a resposta tem status 201 (Criado)",
+									"// pm.test(\"Successful POST request\", function () {",
+									"//     pm.response.to.have.status(201);",
+									"// });",
+									"",
+									"// // Captura o JSON da resposta",
+									"// let responseJson = pm.response.json();",
+									"",
+									"// // Valida se o objeto contém o campo '_id'",
+									"// pm.test(\"Response contains '_id'\", function () {",
+									"//     pm.expect(responseJson).to.have.property(\"_id\");",
+									"// });",
+									"",
+									"// // Atualiza o ambiente com os campos retornados pelo backend",
+									"// pm.environment.set(\"product_id\", responseJson._id);",
+									"// pm.environment.set(\"createdAt\", responseJson.createdAt);",
+									"// pm.environment.set(\"updatedAt\", responseJson.updatedAt);",
+									"",
+									"// // Loga a resposta recebida",
+									"// console.log(\"Resposta do servidor:\");",
+									"// console.log(JSON.stringify(responseJson, null, 2));",
+									"// // Verifica se o response body possui as propriedades esperadas",
+									"// pm.test(\"Response body structure is valid\", function () {",
+									"//     pm.expect(responseJson).to.have.property(\"nome\");",
+									"//     pm.expect(responseJson).to.have.property(\"descricao\");",
+									"//     pm.expect(responseJson).to.have.property(\"preco\");",
+									"//     pm.expect(responseJson).to.have.property(\"imgUrl\");",
+									"//     pm.expect(responseJson).to.have.property(\"alt\");",
+									"//     pm.expect(responseJson).to.have.property(\"categoria\");",
+									"//     pm.expect(responseJson).to.have.property(\"marca\");",
+									"//     pm.expect(responseJson).to.have.property(\"_id\");",
+									"//     pm.expect(responseJson).to.have.property(\"createdAt\");",
+									"//     pm.expect(responseJson).to.have.property(\"updatedAt\");",
+									"//     pm.expect(responseJson).to.have.property(\"__v\");",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followOriginalHttpMethod": true,
+						"insecureHTTPParser": false,
+						"tlsPreferServerCiphers": true,
+						"tlsDisabledProtocols": [
+							"TLSv1_2",
+							"TLSv1_3"
+						]
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"{{nome}}\",\r\n    \"descricao\":\"{{descricao}}\",\r\n    \"preco\":\"{{preco}}\",\r\n    \"imgUrl\":\"{{imgUrl}}\",\r\n    \"alt\":\"{{alt}}\",\r\n    \"categoria\":\"{{categoria}}\",\r\n    \"marca\":\"{{marca}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": [
+						{
+							"name": "Adicionar produto",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\":\"{{nome}}\",\r\n    \"descricao\":\"{{descricao}}\",\r\n    \"preco\":\"{{preco}}\",\r\n    \"imgUrl\":\"{{imgUrl}}\",\r\n    \"alt\":\"{{alt}}\",\r\n    \"categoria\":\"{{categoria}}\",\r\n    \"marca\":\"{{marca}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "266"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10a-JcHV3AaPyaLVbzXRf03IXJhzX00\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2024 19:49:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"nome\": \"nome 7\",\n    \"descricao\": \"Descrição 7\",\n    \"preco\": 702,\n    \"imgUrl\": \"/uploads/img 7.jpg\",\n    \"alt\": \"Texto 7\",\n    \"categoria\": \"categoria 7\",\n    \"marca\": \"marca 7\",\n    \"_id\": \"675b3e600ab1399b9246755f\",\n    \"createdAt\": \"2024-12-12T19:49:52.315Z\",\n    \"updatedAt\": \"2024-12-12T19:49:52.315Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Listar produtos _id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(\"Pre-Request Script executado com sucesso!\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Testa se o status é 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Obtém o JSON da resposta\r",
+									"let responseJson = pm.response.json();\r",
+									"\r",
+									"// Loga o produto retornado\r",
+									"console.log(\"Produto retornado:\", JSON.stringify(responseJson, null, 2));\r",
+									"\r",
+									"// Valida se o produto retornado possui o ID esperado\r",
+									"pm.test(\"Produto corresponde ao ID solicitado\", function () {\r",
+									"    pm.expect(responseJson._id).to.eql(pm.environment.get(\"product_id\"));\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"// // Loga cada objeto em uma linha separada, com espaçamento entre os itens\r",
+									"// console.log(\"Lista de Produtos:\");\r",
+									"// responseJson.forEach((produto, index) => {\r",
+									"//     console.log(JSON.stringify(produto, null, 2));\r",
+									"//     console.log(\"\\n\"); // Adiciona uma linha em branco entre os objetos\r",
+									"// });\r",
+									"\r",
+									"// // Testa se o status é 200\r",
+									"// pm.test(\"Status code is 200\", function () {\r",
+									"//     pm.response.to.have.status(200);\r",
+									"// });\r",
+									"\r",
+									"// // Obtém o JSON da resposta\r",
+									"// let responseJson = pm.response.json();\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products/{{product_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"{{product_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar produtos _id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/products/{{product_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products",
+										"{{product_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "266"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10a-N68b/7Cwb1IUObSZLud63j6ozzE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2024 19:52:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"675b3e600ab1399b9246755f\",\n    \"nome\": \"nome 7\",\n    \"descricao\": \"Descrição 7\",\n    \"preco\": 702,\n    \"imgUrl\": \"/uploads/img 7.jpg\",\n    \"alt\": \"Texto 7\",\n    \"categoria\": \"categoria 7\",\n    \"marca\": \"marca 7\",\n    \"createdAt\": \"2024-12-12T19:49:52.315Z\",\n    \"updatedAt\": \"2024-12-12T19:49:52.315Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Atualizar produto",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Recupera o ID do produto criado no POST\r",
+									"pm.environment.set(\"product_id\", pm.environment.get(\"product_id\"));\r",
+									"\r",
+									"// Configura os campos do produto\r",
+									"pm.environment.set(\"nome\", pm.environment.get(\"nome\"));\r",
+									"pm.environment.set(\"descricao\", pm.environment.get(\"descricao\"));\r",
+									"pm.environment.set(\"preco\", pm.environment.get(\"preco\"));\r",
+									"pm.environment.set(\"imgUrl\", pm.environment.get(\"imgUrl\"));\r",
+									"pm.environment.set(\"alt\", pm.environment.get(\"alt\"));\r",
+									"pm.environment.set(\"categoria\", pm.environment.get(\"categoria\"));\r",
+									"pm.environment.set(\"marca\", pm.environment.get(\"marca\"));\r",
+									"\r",
+									"// Log para verificação no console do Postman\r",
+									"console.log(\"Dados configurados para o PUT:\", {\r",
+									"    nome: pm.environment.get(\"nome\"),\r",
+									"    descricao: pm.environment.get(\"descricao\"),\r",
+									"    preco: pm.environment.get(\"preco\"),\r",
+									"    imgUrl: pm.environment.get(\"imgUrl\"),\r",
+									"    alt: pm.environment.get(\"alt\"),\r",
+									"    categoria: pm.environment.get(\"categoria\"),\r",
+									"    marca: pm.environment.get(\"marca\")\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Produto atualizado com sucesso!\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.data._id).to.eql(pm.environment.get(\"product_id\"));",
+									"    pm.expect(response.data.nome).to.eql(pm.environment.get(\"nome\"));",
+									"    pm.expect(response.data.descricao).to.eql(pm.environment.get(\"descricao\"));",
+									"    pm.expect(pm.response).to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followOriginalHttpMethod": true,
+						"insecureHTTPParser": false,
+						"tlsPreferServerCiphers": true,
+						"tlsDisabledProtocols": [
+							"TLSv1_2",
+							"TLSv1_3"
+						]
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"{{nome}}\",\r\n    \"descricao\": \"{{descricao}}\",\r\n    \"preco\": \"{{preco}}\",\r\n    \"imgUrl\": \"{{imgUrl}}\",\r\n    \"alt\": \"{{alt}}\",\r\n    \"categoria\": \"{{categoria}}\",\r\n    \"marca\": \"{{marca}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/products/{{product_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"{{product_id}}"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": [
+						{
+							"name": "Atualizar produto",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{nome}}\",\r\n    \"descricao\": \"{{descricao}}\",\r\n    \"preco\": \"{{preco}}\",\r\n    \"imgUrl\": \"{{imgUrl}}\",\r\n    \"alt\": \"{{alt}}\",\r\n    \"categoria\": \"{{categoria}}\",\r\n    \"marca\": \"{{marca}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/products/{{product_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products",
+										"{{product_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "319"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13f-v9h4lOiWCkbLGQoRV3f7le7xC18\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2024 19:52:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Produto atualizado com sucesso!\",\n    \"data\": {\n        \"_id\": \"675b3e600ab1399b9246755f\",\n        \"nome\": \"nome 7\",\n        \"descricao\": \"Descrição 7\",\n        \"preco\": 702,\n        \"imgUrl\": \"/uploads/img 7.jpg\",\n        \"alt\": \"Texto 7\",\n        \"categoria\": \"categoria 7\",\n        \"marca\": \"marca 7\",\n        \"createdAt\": \"2024-12-12T19:49:52.315Z\",\n        \"updatedAt\": \"2024-12-12T19:52:54.435Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Deletar produto",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Confirma que o ID do produto existe no ambiente\r",
+									"if (!pm.environment.get(\"product_id\")) {\r",
+									"    throw new Error(\"A variável 'product_id' não foi definida no ambiente.\");\r",
+									"}\r",
+									"\r",
+									"// Log do ID do produto que será excluído\r",
+									"console.log(\"ID do produto para exclusão:\", pm.environment.get(\"product_id\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () { ",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.have.jsonBody('message', 'Produto deletado com sucesso!'); });",
+									"",
+									"// Valida a mensagem de sucesso na resposta (se aplicável)",
+									"pm.test(\"Produto deletado com sucesso\", function () {",
+									"    const responseJson = pm.response.json();",
+									"    pm.expect(responseJson.message).to.eql(\"Produto deletado com sucesso!\");",
+									"});",
+									"",
+									"// Remove apenas o Current Value da variável product_id",
+									"pm.environment.set(\"product_id\", \"\"); // Define o valor atual como vazio",
+									"",
+									"console.log(\"Produto deletado. Current Value de 'product_id' foi limpo, variável permanece configurada.\");",
+									"// Remove apenas o Current Value da variável product_id",
+									"pm.environment.set(\"createdAt\", \"\"); // Define o valor atual como vazio",
+									"",
+									"console.log(\"Produto deletado. Current Value de 'createdAt' foi limpo, variável permanece configurada.\");",
+									"",
+									"// Remove apenas o Current Value da variável product_id",
+									"pm.environment.set(\"updatedAt\", \"\"); // Define o valor atual como vazio",
+									"",
+									"console.log(\"Produto deletado. Current Value de 'updatedAt' foi limpo, variável permanece configurada.\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followOriginalHttpMethod": true,
+						"insecureHTTPParser": false,
+						"tlsPreferServerCiphers": true,
+						"tlsDisabledProtocols": [
+							"TLSv1_2",
+							"TLSv1_3"
+						]
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/{{product_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"{{product_id}}"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": [
+						{
+							"name": "Deletar produto",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/products/{{product_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products",
+										"{{product_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "317"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13d-hACFNPNw8Ye8iv6GKzj69ZTZrgE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2024 19:53:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Produto deletado com sucesso!\",\n    \"data\": {\n        \"_id\": \"675b3e600ab1399b9246755f\",\n        \"nome\": \"nome 7\",\n        \"descricao\": \"Descrição 7\",\n        \"preco\": 702,\n        \"imgUrl\": \"/uploads/img 7.jpg\",\n        \"alt\": \"Texto 7\",\n        \"categoria\": \"categoria 7\",\n        \"marca\": \"marca 7\",\n        \"createdAt\": \"2024-12-12T19:49:52.315Z\",\n        \"updatedAt\": \"2024-12-12T19:52:54.435Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

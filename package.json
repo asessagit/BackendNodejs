@@ -1,0 +1,67 @@
+{
+  "name": "backend-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": true,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "https://github.com/asessagit/BackendNodejs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asessagit/BackendNodejs"
+  },
+  "bugs": "",
+  "keywords": [
+    "Asessa",
+    "Alura",
+    "Imersão",
+    "Backend",
+    "Nodejs",
+    "JavaScript",
+    "MongoDB"
+  ],
+  "author": {
+    "name": "Alexandre Di Sessa",
+    "email": "a.sessa@outlook.com",
+    "url": "https://www.asessa.com.br"
+  },
+  "contributors": [
+    "Créditos: Imersão Backend da Alura e seus colaboradores (18/11/2024 a 22/11/2024)"
+  ],
+  "scripts": {
+    "dev": "node --watch --env-file=.env server.js",
+    "test": "newman run tests/ApiTestBasic.postman_test_run.json -e tests/BackEndNodejs.postman_environment.json -r htmlextra"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.2.0",
+    "bcryptjs": "^2.4.3",
+    "cli": "^1.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "es6": "^0.0.7",
+    "eslint": "^9.15.0",
+    "express": "^4.21.1",
+    "glob": "^9.3.5",
+    "har-validator": "^5.1.5",
+    "helmet": "^8.0.0",
+    "jose": "^5.9.6",
+    "json": "^11.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mkdirp": "^3.0.1",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.8.3",
+    "multer": "^1.4.5-lts.1",
+    "newman": "^6.2.0",
+    "postman-runtime": "^7.43.1",
+    "postman-to-openapi": "^1.2.0",
+    "reporter": "^0.1.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^11.0.3"
+  }
+}
